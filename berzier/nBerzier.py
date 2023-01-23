@@ -23,5 +23,7 @@ class Nberzier():
 
     def getPoints(self):
         return [{'point': p, 'label': self.labels[idx]} for idx, p in enumerate(self.points)]
+    def getWithoutLabels(self):
+        return self.points
 
         

@@ -8,7 +8,7 @@ from nBerzier import Nberzier
 def timerTick_Event(i):
     global berzierSaved
     
-    nb = Nberzier(-15, 15, randomNPoints=20) #Här väljer man antal punkter
+    nb = Nberzier(-15, 15, randomNPoints=25) #Här väljer man antal punkter
     pointBerzier = nb.nBerzier()
 
     f = plt.gcf()
@@ -31,7 +31,7 @@ f1 = plt.figure(1)
 ax = f1.add_subplot()
 ax.set_xlim(-15, 15); ax.set_ylim(-15, 15)
 
-timerTickInterval = 2000
+timerTickInterval = 10
 ani = FuncAnimation(f1, timerTick_Event, interval=timerTickInterval)
 plt.show()
 
