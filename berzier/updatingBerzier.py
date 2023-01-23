@@ -8,7 +8,7 @@ from nBerzier import Nberzier
 def timerTick_Event(i):
     global berzierSaved
     
-    nb = Nberzier(-15, 15, randomNPoints=5) #Här väljer man antal punkter
+    nb = Nberzier(-15, 15, randomNPoints=20) #Här väljer man antal punkter
     pointBerzier = nb.nBerzier()
 
     f = plt.gcf()

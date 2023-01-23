@@ -4,7 +4,7 @@ import random as rnd
 from nBerzier import Nberzier
 
 
-nb = Nberzier(-15, 15, randomNPoints=3) #Här väljer man antal punkter
+nb = Nberzier(-15, 15, randomNPoints=6) #Här väljer man antal punkter
 pointBerzier = nb.nBerzier()
 
 ax = plt.figure().add_subplot()

@@ -6,10 +6,10 @@ class Nberzier():
     def __init__(self, min, max, points=None, randomNPoints = None,):
         self.points = points
         if randomNPoints and not points:
-            self.points = np.array([[rnd.uniform((2/3)*min, (2/3)*max), rnd.uniform((2/3)*min, (2/3)*max)] for i in range(0,randomNPoints)]).astype(float)
+            self.points = np.array([[rnd.uniform((4/5)*min, (4/5)*max), rnd.uniform((4/5)*min, (4/5)*max)] for i in range(0,randomNPoints)]).astype(float)
         
         self.degree = len(self.points)
-        self.theta = np.linspace(min, max, 10000)
+        self.theta = np.linspace(0, 1, 10000)
         self.labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
     def nBerzier(self):
