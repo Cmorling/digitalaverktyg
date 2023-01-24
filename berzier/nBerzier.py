@@ -19,16 +19,12 @@ class NBerzier(Berzier):
         #print(self.curves)
     def nBerzier(self):
         ret = None
-        scalars = []
-        for i in range(0, self.degree):
-            n = self.degree - 1
-            k = i
-            scalars.append(math.comb(n, k)*(self.theta**(n-k))*((1-self.theta)**k))
         for idx, curve in enumerate(self.curves):
             if idx == 0:
-                ret = np.dot(curve.T, scalars)
+                ret = self.berzier(curve=curve)
                 continue
-            ret = np.concatenate((ret, np.dot(curve.T, scalars)))
+            ret = np.concatenate((ret, self.berzier(curve=curve)))
+        
         return ret
     
     def getPoints(self):
@@ -60,5 +56,4 @@ class NBerzier(Berzier):
         self.curves = newCurve
     
     def restart(self):
-        print(self.points)
         self.__init__(self.min, self.max, self.nCruves, points=None, randomNPoints=self.randomNPoints)

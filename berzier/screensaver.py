@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from nBerzier import NBerzier
 
-nBerziers = 6
-randomNPoints = 7
+nBerziers = 10
+randomNPoints = 20
 
 nb = NBerzier(-15,15, nBerziers, randomNPoints=randomNPoints)
 
@@ -18,6 +18,7 @@ def timerTick_Event(i):
     global nb
     if i > 0:
         nb.update()
+    
     pointBerzier = nb.nBerzier()
     
     f = plt.gcf()
@@ -34,8 +35,7 @@ def timerTick_Event(i):
     #     ax.plot(*point, 'ro')
         #ax.annotate(point['label'], point['point']+.35, fontsize="small")
     
-    ax.plot(*pointBerzier, label='Berzier Kurva', color='green')
-    #ax.legend()
+    ax.plot(*pointBerzier, color=f"C0")
     
 f1 = plt.figure(1)
 ax = f1.add_subplot()

@@ -7,7 +7,9 @@ from berzier import Berzier
 nb = Berzier(-15, 15, randomNPoints=4) #Här väljer man antal punkter
 pointBerzier = nb.berzier()
 
-ax = plt.figure().add_subplot()
+f1 = plt.figure(1)
+ax = f1.add_subplot()
+
 ax.set_xlim(-15, 15); ax.set_ylim(-15, 15)
 
 for point in nb.getPoints():
