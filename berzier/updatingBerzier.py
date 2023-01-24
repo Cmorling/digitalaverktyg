@@ -3,13 +3,13 @@ import matplotlib
 import matplotlib.pyplot as plt
 import random as rnd
 from matplotlib.animation import FuncAnimation
-from nBerzier import Nberzier
+from berzier import Berzier
 
 def timerTick_Event(i):
     global berzierSaved
     
-    nb = Nberzier(-15, 15, randomNPoints=25) #Här väljer man antal punkter
-    pointBerzier = nb.nBerzier()
+    nb = Berzier(-15, 15, randomNPoints=6) #Här väljer man antal punkter
+    pointBerzier = nb.berzier()
 
     f = plt.gcf()
     ax = f.gca()    
@@ -31,7 +31,7 @@ f1 = plt.figure(1)
 ax = f1.add_subplot()
 ax.set_xlim(-15, 15); ax.set_ylim(-15, 15)
 
-timerTickInterval = 10
+timerTickInterval = 1000
 ani = FuncAnimation(f1, timerTick_Event, interval=timerTickInterval)
 plt.show()
 
