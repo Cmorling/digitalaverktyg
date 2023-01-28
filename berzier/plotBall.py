@@ -21,7 +21,6 @@ def onKeyRelease(event):
 
 
 def timerTick_Event(i):
-    global b
     p.update()
     
     pointBerzier = b.berzier()
