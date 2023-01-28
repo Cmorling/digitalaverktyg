@@ -10,7 +10,7 @@ from ball import Ball
 
 randomNPoints = 10
 
-b = Berzier(-15,15, points=np.array([[-7,10],[-4,-14],[2,-9],[4,10]]), randomNPoints=randomNPoints)
+b = Berzier(-15,15, points=np.array([[-7,10],[-4,-14],[2,-9],[4,10]]))
 ballPos = [3,14]
 p = Physics(Ball(ballPos), b)
 def onKeyRelease(event):
