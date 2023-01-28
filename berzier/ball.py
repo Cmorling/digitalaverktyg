@@ -5,9 +5,3 @@ class Ball:
         self.oldS = np.array([])
         self.v = np.array([])
         self.a = 0
-    def getPosition(self):
-        return self.currentS
-    def getVelocity(self):
-        return self.v
-    def getAcceleration(self):
-        return self.a
