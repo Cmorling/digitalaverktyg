@@ -25,7 +25,7 @@ def timerTick_Event(i):
     p.update()
     
     pointBerzier = b.berzier()
-    ballPos = p.getBall().currentS
+    ballPos = p.getBall().getCurrentPosition()
     collissionDetect = p.checkCollission()
     
     f = plt.gcf()
