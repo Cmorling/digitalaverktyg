@@ -44,7 +44,7 @@ class Physics:
     
     def updateBallVelocity(self, norm):
         vOut = np.array(self.ball.getVelocity() - 2*(np.dot(self.ball.getVelocity(), norm)*norm))
-        self.ball.currentS=self.ball.getOldPosition()
+        self.ball.setCurrentPostion(self.ball.getOldPosition())
         self.ball.setVelocity(vOut*0.95)
     
     def restart(self, ball, berzier):
