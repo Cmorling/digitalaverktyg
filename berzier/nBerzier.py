@@ -43,7 +43,7 @@ class NBerzier(Berzier):
             for point in curve:
                 direction = np.array([rnd.uniform(-1.0, 1.0), rnd.uniform(-1.0, 1.0)]).astype(float)
                 direction = direction / np.linalg.norm(direction)
-                newPoints.append(point + 0.25*direction)
+                newPoints.append(point + 0.5*direction)
             
             if idx != 0:
                 newPoints[0] = newCurve[idx-1][-1]

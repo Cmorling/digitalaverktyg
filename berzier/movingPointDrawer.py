@@ -2,12 +2,13 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from nBerzier import NBerzier
+from movingPointNBerzier import MovingPointNBerzier
+import time
 
 nBerziers = 3
 randomNPoints = 5
 
-nb = NBerzier(-15,15, nBerziers, randomNPoints=randomNPoints)
+nb = MovingPointNBerzier(-15,15, nBerziers, randomNPoints=randomNPoints)
 
 def onKeyRelease(event):
     print('you pressed', bytes(event.key, encoding='utf-8'), event.xdata, event.ydata)
@@ -17,8 +18,10 @@ def onKeyRelease(event):
 def timerTick_Event(i):
     global nb
     if i > 0:
-        nb.update()
-    
+        #nb.update()
+        pass
+    nb.movePoint()
+    movingPoint = nb.getCurrentPoint()
     pointBerzier = nb.nBerzier()
     
     f = plt.gcf()
@@ -32,9 +35,11 @@ def timerTick_Event(i):
     #         child.remove()
       
     # for point in nb.getPoints():
+    #     print(point)
     #     ax.plot(*point, 'ro')
         #ax.annotate(point['label'], point['point']+.35, fontsize="small")
-    
+    #print(*movingPoint)
+    ax.plot(*movingPoint, 'ro')
     ax.plot(*pointBerzier, color=f"C0")
     
 f1 = plt.figure(1)

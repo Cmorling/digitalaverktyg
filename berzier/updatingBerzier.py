@@ -5,10 +5,16 @@ import random as rnd
 from matplotlib.animation import FuncAnimation
 from berzier import Berzier
 
+randomNPoints = 10
+
+nb = Berzier(-15,15, randomNPoints=randomNPoints)
+
+def onKeyRelease(event):
+    if event.key == ' ':
+        nb.restart(-15,15, randomNPoints=randomNPoints)
+
 def timerTick_Event(i):
-    global berzierSaved
     
-    nb = Berzier(-15, 15, randomNPoints=6) #Här väljer man antal punkter
     pointBerzier = nb.berzier()
 
     f = plt.gcf()
@@ -25,13 +31,15 @@ def timerTick_Event(i):
         ax.plot(*point['point'], 'ro')
         ax.annotate(point['label'], point['point']+.35, fontsize="small")
     
-    ax.plot(*pointBerzier, label='Berzier Kurva')
+    ax.plot(*pointBerzier, label='Berzier Kurva', color="C0")
 
 f1 = plt.figure(1)
 ax = f1.add_subplot()
 ax.set_xlim(-15, 15); ax.set_ylim(-15, 15)
 
-timerTickInterval = 1000
+cid = f1.canvas.mpl_connect('key_release_event', onKeyRelease)
+
+timerTickInterval = 10
 ani = FuncAnimation(f1, timerTick_Event, interval=timerTickInterval)
 plt.show()
 

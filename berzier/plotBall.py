@@ -1,29 +1,39 @@
+
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from nBerzier import NBerzier
+import time
+from physics import Physics
+from berzier import Berzier
+from ball import Ball
 
-nBerziers = 3
-randomNPoints = 5
+randomNPoints = 10
 
-nb = NBerzier(-15,15, nBerziers, randomNPoints=randomNPoints)
-
+b = Berzier(-15,15, points=np.array([[-7,10],[-4,-14],[2,-9],[4,10]]), randomNPoints=randomNPoints)
+ballPos = [3,14]
+p = Physics(Ball(ballPos), b)
 def onKeyRelease(event):
     print('you pressed', bytes(event.key, encoding='utf-8'), event.xdata, event.ydata)
     if event.key == ' ':
-        nb.restart()
+        #b.restart(-15,15, randomNPoints=randomNPoints)
+        p.restart(Ball([event.xdata, event.ydata]), b)
+
 
 def timerTick_Event(i):
-    global nb
-    if i > 0:
-        nb.update()
+    global b
+    p.update()
     
-    pointBerzier = nb.nBerzier()
+    pointBerzier = b.berzier()
+    ballPos = p.getBall().getPosition()
+    collissionDetect = p.checkCollission()
     
     f = plt.gcf()
     ax = f.gca()    
-    
+    if np.all(collissionDetect):
+        p.updateBallVelocity(collissionDetect)
+        #ax.quiver(*ballPos, *collissionDetect, color="r", angles='xy', scale_units='xy', scale=1)
+        #time.sleep(4)
     for item in ax.get_lines():
         item.remove()
     
@@ -34,7 +44,7 @@ def timerTick_Event(i):
     # for point in nb.getPoints():
     #     ax.plot(*point, 'ro')
         #ax.annotate(point['label'], point['point']+.35, fontsize="small")
-    
+    ax.plot(*ballPos, 'ro')
     ax.plot(*pointBerzier, color=f"C0")
     
 f1 = plt.figure(1)
